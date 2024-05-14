@@ -1,7 +1,6 @@
 /**
- * @autor: Sebastian Aisalla
+ * @author Sebastian Aisalla
  */
-
 package algoritmoGenetico;
 
 import jade.util.leap.Serializable;

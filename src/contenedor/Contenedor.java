@@ -1,5 +1,5 @@
 /**
- * @autor: Sebastian Aisalla
+ * @author Sebastian Aisalla
  */
 
 package contenedor;
