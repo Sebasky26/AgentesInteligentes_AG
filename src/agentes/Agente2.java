@@ -35,7 +35,7 @@ public class Agente2 extends Agent {
                     int y = XY[1];
 
                     Comunicacion.msj(ACLMessage.REQUEST, getAgent(), "Ag3", x + ";" + y
-                            + ";" + tamanioPoblacion + ";" + evoluciones + ";" + iteraciones, null, "CD-02-03");
+                            + ";" + tamanioPoblacion + ";" + evoluciones + ";" + iteraciones + ";" + longCromosoma, null, "CD-02-03");
                     //System.out.println("Se envian datos al Agente 3");
                 } else {
                     if (aclmsj.getConversationId().equals("CD-03-02")) { //si el id de la conversacion es CD-03-02

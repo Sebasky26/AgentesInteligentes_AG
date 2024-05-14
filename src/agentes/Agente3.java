@@ -22,25 +22,26 @@ public class Agente3 extends Agent {
         @Override
         public void action() {
             ACLMessage aclmsj = blockingReceive();
-            String datos = aclmsj.getContent();
+            String datosAG = aclmsj.getContent();
+
+            String[] datosSeparados = datosAG.split(";");
+            int x = Integer.parseInt(datosSeparados[0]);
+            int y = Integer.parseInt(datosSeparados[1]);
+            int tamanioPoblacion = Integer.parseInt(datosSeparados[2]);
+            int evoluciones = Integer.parseInt(datosSeparados[3]);
+            int iteraciones = Integer.parseInt(datosSeparados[4]);
+            int longCromosoma = Integer.parseInt(datosSeparados[5]);
 
             if (aclmsj.getConversationId().equals("CD-02-03")) { //si el id de la conversacion es CD-02-03
-                String[] partes = datos.split(";");
-                int x = Integer.parseInt(partes[0]);
-                int y = Integer.parseInt(partes[1]);
-                int tamanioPoblacion = Integer.parseInt(partes[2]);
-                int evoluciones = Integer.parseInt(partes[3]);
-                int iteraciones = Integer.parseInt(partes[4]);
 
                 if (Math.abs(x) > UMBRAL_APTITUD && Math.abs(y) > UMBRAL_APTITUD) {
                     // Si es la mejor población, envía los datos al Agente 4
-                    System.out.println("------------La mejor configuracion es------------"
-                            + "\nTamano Poblacion: " + tamanioPoblacion + ",\nEvoluciones: " + evoluciones + ",\nIteraciones: " + iteraciones);
-                    Comunicacion.msj(ACLMessage.INFORM, getAgent(), "Ag4", datos, null, "CD-03-04");
+                    Comunicacion.msj(ACLMessage.INFORM, getAgent(), "Ag4", datosAG, null, "CD-03-04");
                 } else {
                     // Si no es la mejor población, solicita más datos al Agente 2
                     System.out.println("------------------Configuracion------------------"
-                            + "\nTamano Poblacion: " + tamanioPoblacion + ",\nEvoluciones: " + evoluciones + ",\nIteraciones: " + iteraciones);
+                            + "\nTamano Poblacion: " + tamanioPoblacion + ",\nEvoluciones: " + evoluciones
+                            + ",\nIteraciones: " + iteraciones + ",\nLongitud Cromosoma: " + longCromosoma);
                     System.out.println("-------------------------------------------------");
                     System.out.println("No es la mejor población!");
                     System.out.println("-------------------------------------------------\n");
